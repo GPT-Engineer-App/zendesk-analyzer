@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, Text, VStack, HStack, Box, Stat, StatLabel, StatNumber, StatHelpText, IconButton, Table, Thead, Tbody, Tr, Th, Td, Button } from "@chakra-ui/react";
+import { Container, Text, VStack, HStack, Box, Stat, StatLabel, StatNumber, StatHelpText, IconButton, Table, Thead, Tbody, Tr, Th, Td, Button, Input } from "@chakra-ui/react";
 import { FaSmile, FaClock, FaTag, FaCheckCircle } from "react-icons/fa";
 
 const mockTickets = [
@@ -14,6 +14,40 @@ const Index = () => {
   const averageCSAT = tickets.reduce((acc, ticket) => acc + ticket.csat, 0) / tickets.length;
   const averageFirstResponseTime = tickets.reduce((acc, ticket) => acc + parseInt(ticket.firstResponseTime), 0) / tickets.length;
   const averageTimeToResolution = tickets.reduce((acc, ticket) => acc + parseInt(ticket.timeToResolution), 0) / tickets.length;
+
+  const handleFileUpload = (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const text = e.target.result;
+      const data = parseCSV(text);
+      setTickets(data);
+    };
+    reader.readAsText(file);
+  };
+
+  const parseCSV = (text) => {
+    const lines = text.split("\n");
+    const result = [];
+    for (let i = 1; i < lines.length; i++) {
+      const line = lines[i].split(",");
+      if (line.length === 6) {
+        result.push({
+          id: parseInt(line[0]),
+          customer: line[1],
+          csat: parseInt(line[2]),
+          firstResponseTime: line[3],
+          category: line[4],
+          timeToResolution: line[5],
+        });
+      }
+    }
+    return result;
+  };
+
+  const handleFileUploadClick = () => {
+    document.querySelector('input[type="file"]').click();
+  };
 
   return (
     <Container centerContent maxW="container.lg" height="100vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
@@ -62,7 +96,8 @@ const Index = () => {
             </Tbody>
           </Table>
         </Box>
-        <Button colorScheme="blue" size="lg">
+        <Input type="file" accept=".csv" onChange={handleFileUpload} />
+        <Button colorScheme="blue" size="lg" onClick={handleFileUploadClick}>
           Upload Data
         </Button>
       </VStack>
