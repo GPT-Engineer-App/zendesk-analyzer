@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, Text, VStack, HStack, Box, Stat, StatLabel, StatNumber, StatHelpText, IconButton, Table, Thead, Tbody, Tr, Th, Td } from "@chakra-ui/react";
+import { Container, Text, VStack, HStack, Box, Stat, StatLabel, StatNumber, StatHelpText, IconButton, Table, Thead, Tbody, Tr, Th, Td, Button } from "@chakra-ui/react";
 import { FaSmile, FaClock, FaTag, FaCheckCircle } from "react-icons/fa";
 
 const mockTickets = [
@@ -62,6 +62,9 @@ const Index = () => {
             </Tbody>
           </Table>
         </Box>
+        <Button colorScheme="blue" size="lg">
+          Upload Data
+        </Button>
       </VStack>
     </Container>
   );
