@@ -118,8 +118,8 @@ const Index = () => {
             </Tbody>
           </Table>
         </Box>
-        {showFileInput && <Input type="file" accept=".csv" onChange={handleFileUpload} mt={4} />}
-        <Button colorScheme="blue" size="lg" onClick={handleFileUploadClick}>
+        <Input type="file" accept=".csv" onChange={handleFileUpload} display="none" ref={(input) => input && input.click()} />
+        <Button colorScheme="blue" size="lg" onClick={() => document.querySelector('input[type="file"]').click()}>
           Upload Data
         </Button>
       </VStack>
