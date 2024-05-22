@@ -123,10 +123,6 @@ const Index = () => {
           Upload Data
         </Button>
       </VStack>
-      {showFileInput && <Input type="file" accept=".csv" onChange={handleFileUpload} mt={4} />}
-      <Button colorScheme="blue" size="lg" onClick={handleFileUploadClick}>
-        Upload Data
-      </Button>
 
       <Modal isOpen={showMappingModal} onClose={() => setShowMappingModal(false)}>
         <ModalOverlay />
