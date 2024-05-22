@@ -15,7 +15,6 @@ const Index = () => {
   const averageFirstResponseTime = tickets.reduce((acc, ticket) => acc + parseInt(ticket.firstResponseTime), 0) / tickets.length;
   const averageTimeToResolution = tickets.reduce((acc, ticket) => acc + parseInt(ticket.timeToResolution), 0) / tickets.length;
 
-  const [showFileInput, setShowFileInput] = useState(false);
   const [showMappingModal, setShowMappingModal] = useState(false);
   const [csvData, setCsvData] = useState([]);
   const [columnMappings, setColumnMappings] = useState({
@@ -68,7 +67,7 @@ const Index = () => {
   };
 
   const handleFileUploadClick = () => {
-    setShowFileInput(true);
+    document.getElementById("fileInput").click();
   };
 
   return (
@@ -118,8 +117,8 @@ const Index = () => {
             </Tbody>
           </Table>
         </Box>
-        <Input type="file" accept=".csv" onChange={handleFileUpload} display="none" ref={(input) => input && input.click()} />
-        <Button colorScheme="blue" size="lg" onClick={() => document.querySelector('input[type="file"]').click()}>
+        <Input type="file" accept=".csv" onChange={handleFileUpload} display="none" id="fileInput" />
+        <Button colorScheme="blue" size="lg" onClick={handleFileUploadClick}>
           Upload Data
         </Button>
       </VStack>
