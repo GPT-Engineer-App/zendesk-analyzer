@@ -74,7 +74,7 @@ const Index = () => {
             <StatHelpText>Average</StatHelpText>
           </Stat>
         </HStack>
-        <Box width="100%">
+        <Box width="100%" mt={4}>
           <Table variant="simple">
             <Thead>
               <Tr>
@@ -98,7 +98,7 @@ const Index = () => {
             </Tbody>
           </Table>
         </Box>
-        {showFileInput && <Input type="file" accept=".csv" onChange={handleFileUpload} />}
+        {showFileInput && <Input type="file" accept=".csv" onChange={handleFileUpload} mt={4} />}
         <Button colorScheme="blue" size="lg" onClick={handleFileUploadClick}>
           Upload Data
         </Button>
