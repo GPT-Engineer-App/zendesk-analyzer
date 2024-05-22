@@ -45,8 +45,10 @@ const Index = () => {
     return result;
   };
 
+  const [showFileInput, setShowFileInput] = useState(false);
+
   const handleFileUploadClick = () => {
-    document.querySelector('input[type="file"]').click();
+    setShowFileInput(true);
   };
 
   return (
@@ -96,7 +98,7 @@ const Index = () => {
             </Tbody>
           </Table>
         </Box>
-        <Input type="file" accept=".csv" onChange={handleFileUpload} />
+        {showFileInput && <Input type="file" accept=".csv" onChange={handleFileUpload} />}
         <Button colorScheme="blue" size="lg" onClick={handleFileUploadClick}>
           Upload Data
         </Button>
